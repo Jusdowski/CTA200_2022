@@ -1,0 +1,202 @@
+    1  /cita/local/bin/passwd
+    2  logout
+    3  hi
+    4  pwd
+    5  ls
+    6  cd Pictures
+    7  ls
+    8  pwd
+    9  cd ..
+   10  ls
+   11  module avail
+   12  module
+   13  cd scratch
+   14  ls
+   15  whoami
+   16  w
+   17  who
+   18  w
+   19  pwd
+   20  ls
+   21  ~
+   22  cd Documents
+   23  ls
+   24  cd ..
+   25  ls
+   26  cd .
+   27  ls
+   28  pwd
+   29  cd
+   30  ls
+   31  pwd
+   32  cd ~
+   33  ls
+   34  pwd
+   35  ls
+   36  echo $0
+   37  man ls
+   38  ls -la
+   39  cd
+   40  cd ~murray
+   41  ls
+   42  cd papers
+   43  cd Papers
+   44  ls
+   45  cd Hopkins
+   46  cd All_Feedback
+   47  cd second_draft
+   48  ls
+   49  pwd
+   50  evince leakage_fx.pdf
+   51  pwd
+   52  evince sfh_vs_fbmodel.pdf
+   53  history
+   54  ls
+   55  pwd
+   56  whoami
+   57  ls
+   58  ls | grep ms
+   59  cat ms.bib
+   60  more ms.bib
+   61  q
+   62  grep genzel ms.bib
+   63  ls > junk.txt
+   64  history
+   65  ls
+   66  la
+   67  ls
+   68  dir
+   69  which vi
+   70  vim list_dir
+   71  ls
+   72  emacs
+   73  pwd
+   74  cd home
+   75  cd ..
+   76  ls
+   77  cd ..
+   78  ls
+   79  pwd
+   80  cd ..
+   81  ls
+   82  cd
+   83  ls
+   84  cd ~murrary
+   85  cd ~murray
+   86  find . -name "list" -print
+   87  find . -name "*list*"
+   88  module load gcc/11.2.0 python/3.10.2
+   89  cd ~fhorrobin
+   90  dir *.c
+   91  ls
+   92  m *.c
+   93  more *.c
+   94  ls -la *.c
+   95  cp main.c ~
+   96  pushd ~
+   97  ls -la *.c
+   98  gcc main.c
+   99  la a.*
+  100  ls a.*
+  101  a.out
+  102  /a.out
+  103  ./a.out
+  104  echo $PATH
+  105  PU
+  106  pu
+  107  cd
+  108  cd scratch-lustre
+  109  cd scratch
+  110  cd 
+  111  cd /mnt
+  112  ls -la
+  113  cd scratch-lustre
+  114  ls -la
+  115  cd student14
+  116  pwd
+  117  mkdir CTA200_2022
+  118  LS
+  119  ls
+  120  mkdir assignment_1
+  121  ls
+  122  rmdir assignment_1
+  123  ls
+  124  cd CTA200_2022
+  125  ls
+  126  mkdir assignment_1
+  127  ls
+  128  cd assignment_1
+  129  ls
+  130  vim README.md
+  131  ls
+  132  vim README.md
+  133  ls
+  134  vi README.md
+  135  cd
+  136  cd ~murray
+  137  ls
+  138  cp Hello_world.c /mnt/scratch-lustre/student14
+  139  find -name "*.c"
+  140  find -name "Hello_world.c"
+  141  cd ./Papers/tmp/Hello_world.c
+  142  cs ./Papers/tmp
+  143  cd ./Papers/tmp
+  144  ls
+  145  cp Hello_world.c /mnt/scratch-lustre/student14/CTA200_2022/assignment_1/
+  146  cd ..
+  147  ls
+  148  pwd
+  149  cd ..
+  150  ls
+  151  ls | grep Hello_world.py
+  152  find . -name "Hello_world.py"
+  153  cd tmp
+  154  ls
+  155   /mnt/scratch-lustre/student14/CTA200_2022/assignment_1/
+  156  cp Hello_world.py /mnt/scratch-lustre/student14/CTA200_2022/assignment_1/
+  157  cd
+  158  ls
+  159  cd /mnt/scratch-lustre/student14
+  160  ls
+  161  cd CTA200_2022
+  162  LS
+  163  ls
+  164  cd assignment_1
+  165  ls
+  166  mv Hello_world.c Hello_world_Obidowski.c
+  167  ls
+  168  mv Hello_world.py Hello_world_Obidowski.py
+  169  ls
+  170  module load gcc/11.2.0 python/3.10.2
+  171  gcc Hello_world_Obidowski.c
+  172  ls
+  173  mv a.out Hello_world.x
+  174  ls
+  175  ./Hello_world_Obidowski.ca
+  176  ./Hello_world_Obidowski.c
+  177  gcc Hello_world_Obidowski.c
+  178  ./Hello_world_Obidowski.c
+  179  ./Hello_world.x
+  180  ./Hello_world_Obidowski.py
+  181  python Hello_world_Obidowski.py
+  182  vi Hello_world_Obidowski.py
+  183  vi Hello_world.x
+  184  vi Hello_world_Obidowski.c
+  185  ./Hello_world.x
+  186  gcc Hello_world_Obidowski.c
+  187  ls
+  188  mv a.out Hello_world.x
+  189  ls
+  190  ./Hello_world.x
+  191  python Hello_world_Obidowski.py
+  192  Hello_world.x | output_c.txt
+  193  ./Hello_world.x | output_c.txt
+  194  ./Hello_world.x | vi  output_c.txt
+  195  ls
+  196  ./Hello_world.x > output_c.txt
+  197  ls
+  198  python Hello_world_Obdowski.py > output_python.txt
+  199  python Hello_world_Obidowski.py > output_python.txt
+  200  ls
+  201  history
+  202  history > history.txt
