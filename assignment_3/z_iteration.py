@@ -3,17 +3,18 @@ def z_iteration(c,num_iter):
     
     Parameters
     ----------
-    c : ndarray
-        2D array containing complex floats.
+    c : ndarray or complex number(float or int)
+        2D array containing complex floats or a singular complex number
         
     num_iter: integer
               The maximum number of iterations.
         
     Returns
     -------
-    z : ndarray
-        2D array containing the absolute values of z = z**2 + c after iterating through 
-        the maximum number of iterations.
+    z : ndarray or complex number(float or int)
+        2D array containing the values of z = z**2 + c after iterating through 
+        the maximum number of iterations for an array of c values or the complex number obtained
+        after iterating through the maximum number of iterations for one value of c.
     '''
     
     z = 0
