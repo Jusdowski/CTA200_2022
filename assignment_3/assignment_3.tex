@@ -24,37 +24,35 @@
 \begin{center}
  {\title{Question 1}}
 \end{center}
-\\
-\\
+
 \noindent\text{Methods:}
-\\
-\text{A function was made to iterate the equation $zi+1 = {zi}^2 + c$ for a given number of iterations and return the final value of z starting from z = 0 where c is a complex number or an array of complex numbers. This function was used to calculate z values for the complex plane with -2 $<$ x $<$ 2 and -2 $<$ y $<$ 2 for a chosen maximum number of iterations. The determined zi values show that some points remain bounded in absolute value while others diverge to infinity. The points that remain bounded are known as the Mandelbrot set which are the points where abs(z) $<$= 2. 
-\\
-\\
-An image of the data was made so that the points that diverge are shown by one colour and those that stay bounded are shown by another colour. This was done using for loops to go through each point of the complex plane to determine if it is bounded or not by checking if the corresponding abs(z) $<$= 2. The bounded and unbounded points were plotted as different coloured scatter plots on the same axis.The data used was obtained from the function using a maximum iteration of 100. The plot is shown in figure 1 as an example.
+
+\text{A function was made to iterate the equation $z_{i+1} = {z_i}^2 + c$ for a given number of iterations and return the final value of z starting from z = 0 where c is a complex number. This function was used to calculate z values for the complex plane with -2 $<$ x $<$ 2 and -2 $<$ y $<$ 2 for a chosen maximum number of iterations. The determined zi values show that some points remain bounded in absolute value while others diverge to infinity. The points that remain bounded are known as the Mandelbrot set which are the points where abs(z) $<$= 2. 
 \\
 \\
-A second image of the data was made showing points coloured by a colour scale indicating the iteration number at which points diverge.  This was done by plotting the values for abs(z) $>$ 2 (the diverging points) and using a colour bar to show the iteration number the points diverge at. This was done for a maximum iteration of 30. }
+An image of the data was made so that the points that diverge are shown by one colour and those that stay bounded are shown by another colour. This was done using for loops to go through each point of the complex plane to determine if it is bounded or not by checking if the corresponding abs(z) $<$= 2. The bounded and unbounded points were plotted as different coloured scatter plots on the same axis.The data used was obtained from the function using a maximum iteration of 50. The plot is shown in figure 1 as an example.
+\\
+\\
+A second image of the data was made showing points coloured by a colour scale indicating the iteration number at which points diverge.  This was done by plotting the values for abs(z) $>$ 2 (the diverging points) and using a colour bar to show the iteration number the points diverge at. This was done for a maximum iteration of 50. }
 \\
 \\
 \title{Results:}
 \begin{center}
- {\includegraphics[width=7cm]{index.pdf}}
+ {\includegraphics[width=10cm]{q1_twocolours_latex.pdf}
  \\
- \text{Figure 2: Scatter plot of the points that diverge (red) and the points that are bounded (turquoise). }
+ \text{Figure 1: Scatter plot of the points that diverge (red) and the points that are bounded (turquoise). }
 \end{center}
 
-\noindent\text{The first plot is a scatter plot which shows the points that diverge in red and the points that stay bounded in turquoise. The image shows that the bounded points are in the known shape of the Mandelbrot set which is expected.  
+\noindent\text{The first plot is a scatter plot which shows the points that diverge in red and the points that stay bounded in turquoise. The image shows that the bounded points are in the known shape of the Mandelbrot set which is expected. 
 \\
 \\
-The second plot and it's color scale show that points further from the bounded points diverge at a lower number of iterations while points on or near the border regions between the bounded and unbounded points require a higher number of iterations to diverge. The plot also shows the iteration number of the bounded points as 0 as these points do not diverge.} 
+The second plot and it's color scale showed that points further from the bounded points diverge at a lower number of iterations while points on or near the border regions between the bounded and unbounded points require a higher number of iterations to diverge. The bounded points never diverge so they do not have a colour associated with them and appear as white space on the plot.} 
 
 \begin{center}
  {\title{Question 2}}
 \end{center}
 \\
 \\
-
 \noindent\text{Methods:}
 \\
 \text{One of the earliest known demonstrations that deterministic physical systems could exhibit behaviour that is unpredictable was given by the meteorologist Edward Lorenz when he published the paper, \emph{Deterministic Non Periodic Flow.} In this paper Lorenz introduces three differential equations: 
@@ -67,21 +65,19 @@ $$ \dot{Z} = -bZ +XY $$
 
 \\
 where $\sigma$ is the Prandtl number which is the ratio of the kinematic viscosity to the thermal diffusivity, r is the Rayleigh number which depends on the vertical temperature difference between
-the top and bottom of the atmosphere, and b is a dimensionless length scale. A function was made to return the results of these three equations and an ode solver was used to integrate the equations for t=60 (dimensionless time) using Lorenz's initial conditions W0 = [X0,Y0,Z0] = [0,1.,0]and parameter values [$\sigma$,r,b] =  [10,28,8./3.] for 6000 iterations. 
+the top and bottom of the atmosphere, and b is a dimensionless length scale. A function was made to return the results of these three equations and an ode solver was used to integrate the equations for t=60 (dimensionless time) using Lorenz's initial conditions W0 = [X0,Y0,Z0] = [0,1.,0] and parameter values [$\sigma$,r,b] =  [10,28,8./3.] for 6000 iterations. 
 \\
 \\
 The solution was then interpolated onto a time grid and the numerical solution of Y was plotted for the first 1000 iterations, second 1000 iterations and third 1000 iterations.This was done to reproduce Lorenz's figure 1 in his paper and is the first plot of the solution data. 
 \\
 \\
-The numerical solutions to the equations were also plotted to show the projection on the YZ and XY plane in phase space of the segment trajectory extending from iteration 1400 to 1900.This was done to 
-reproduce Lorenz's figure 2 in his paper. The plot obtained is shown in figure 2 as an example and is the second plot generated. 
+The numerical solutions to the equations were also plotted to show the projection on the YZ and XY plane in phase space of the segment trajectory extending from iteration 1400 to 1900.This was done to reproduce Lorenz's figure 2 in his paper. The plot obtained is shown in figure 2 as an example and is the second plot generated. 
 \\
 \\
-A slightly different W0 was then used to find the solution of the equations. The same values of ($\sigma$, r, b) were used with the same method of solving but with initial 
-condition W0' =  W0 + [0., 10$^{-8}$, 0] = [0., 1.00000001, 0.]. The distance between W' and W was then calculated as a function of time using the known distance between two points equation. The results were then plotted on a semilog plot, a plot with linear time and log distance. This plot is the third and last plot generated. 
+A slightly different W0 was then used to find the solution. The same values of ($\sigma$, r, b) were used with the same method of solving but with initial 
+condition W0' =  W0 + [0., 10$^{-8}$, 0] = [0., 1.00000001, 0.]. The distance between W' and W was then calculated as a function of time using the known distance between two points equation. The results were then plotted on a semilog plot, a plot with linear time and log distance. 
 \\
 }
-
 
 \\
 \\
