@@ -1,25 +1,46 @@
-def z_iteration(c,num_iter):
-    '''Iterates the equation z = z**2 + c for the given number of iterations, starting with z=0.
+def z_iteration(c, num_iter):
+    '''Iterates the equation zi+1 = zi**2 + c for the given number of iterations, starting with z0=0.
     
     Parameters
     ----------
-    c : ndarray or complex number(float or int)
-        2D array containing complex floats or a singular complex number
+    c : complex number(float or int)
+        The complex coordinate value that will be used in the iteration.
         
     num_iter: integer
-              The maximum number of iterations.
+              The maximum number of iterations. 
         
     Returns
     -------
-    z : ndarray or complex number(float or int)
-        2D array containing the values of z = z**2 + c after iterating through 
-        the maximum number of iterations for an array of c values or the complex number obtained
-        after iterating through the maximum number of iterations for one value of c.
-    '''
+    zi : array 
+         1D array containing the values of z = z**2 + c after iterating through 
+         the maximum number of iterations for the given value of c .
+         
+    n: array
+       1D array containing the number of iterations for which point c diverges which is determined to be when abs(zi) > 2. 
+       '''
+    z0 = 0
+    i = 0
     
-    z = 0
+    zi = []
+    n = [] 
     
-    for i in range (num_iter):
-        z = z*z + c
+    while i <= num_iter: 
         
-    return z
+        if i == 0:
+            z1 = z0*z0 + c 
+            zi.append(z1)
+            
+        if i > 0:
+            z = zi[i-1]**2 + c 
+            zi.append(z)
+        
+        if abs(zi[i]) > 2: 
+            n.append(i)
+            break
+            
+        i = i + 1
+        
+    return zi, n
+        
+        
+    return z, zi, n 
