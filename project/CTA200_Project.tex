@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={5in, 8.5in}]{geometry}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{CTA200H: Perturbation of Planetary Systems}
+
+\author{Justine Obidowski}
+
+\date{May 16th 2022}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\noindent\textbf{Introduction:}
+\\
+\text\par{Stars form in clustered environments that dissolve slowly over time. This implies that any planetary system that forms around a star can be subjected to perturbations from other nearby stars. The survivability of a planetary system of a star will then depend on the frequency and strength of its external perturbations. For this project, an N-body gravity code was designed to model the evolution of a single planet system that is subjected to an external perturbation caused by a passing star.}
+\\
+\\
+\noindent\textbf{Description of the Script and it’s Results:}
+\\
+\text\par{The N-body gravity code was designed as a function that uses a 4th Order Hermite Integration Scheme to update the position, velocity, and acceleration of each object in the system through various steps in a total time when given the mass, position, velocity, acceleration, and jolt of each body in cgs units at an initial time of t = 0s. This allows the code to follow the systems evolution going forward in time while conserving energy to a reasonable degree and then return lists of all the positions and velocities at each step. In general, the 4th Order Hermite Integration Scheme used in this N-body function involves the main steps below.}
+\\
+\\
+\text{While the current time is less than the maximum time:
+\\
+1. The current time is updated by adding the time step to the total time.  
+\\
+\\
+2. The position, $\bm{r_p_i}$ and velocity, $\bm{v_p_i}$ vectors of each body $i$ in the system are predicted using equations~\ref{eq:1} and~\ref{eq:2} for the current time using the change in time $dt$ as well as the values of position $\bm{r_0_i}$, velocity $\bm{v_0_i}$, acceleration $\bm{a_0_i}$, and jolt $\bm{\dot{a_0_i}}$ calculated at the previous time. 
+\begin{equation}
+  \centerting
+    \label{eq:1}
+    \bm{r_p_i}  = \frac{dt^3}{6}\bm{\dot{a_0_i}} + \frac{dt^2}{2}\bm{a_0_i} + dt\bm{v_0_i} + \bm{r_0_i} 
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:2}
+\bm{v_p_i}  = \frac{dt^2}{2}\bm{\dot{a_0}_i} +  dt\bm{a_0_i} + \bm{v_0_i} 
+\end{equation}
+\\
+3. The current acceleration vector, $\bm{a_i}$ and jolt vector, $\bm{\dot{a}}$ of each body in the system are calculated from the predicted positions and velocities using the equations~\ref{eq:3},~\ref{eq:4},~\ref{eq:5} and~\ref{eq:6} where $i$ is the body you are currently calculating the acceleration for while $j$ represents each other body in the system, N is the total number of bodies in the system, $\bm{r_i_j}$ is the predicted position of body i relative to body j, $\bm{v_i_j}$ is the predicted velocity of body $i$ relative to body $j$,  $m_j$ is the mass of body j and G is the gravitational constant.
+\begin{equation}
+\centerting
+\label{eq:3}
+\bm{r_i_j} = \bm{r_p_j} - \bm{r_p_i}
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:4}
+\bm{v_i_j} = \bm{v_p_j} - \bm{v_p_i}
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:5}
+\bm{a_1_i}  = \sum_{j=1}^{N} Gm_j\frac{\bm{r_i_j}}{r_i_j^3} 
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:6}
+\bm{a_1_i}  = \sum_{j=1}^{N} Gm_j\frac{\bm{r_i_j}}{r_i_j^5} 
+\end{equation}
+\\
+\\
+4. The second, $\bm{a_0_i}^{(2)}$ and third derivative $\bm{a_0_i}^{(3)}$ vectors of each body in the system at the previous time are determined using equations~\ref{eq:7} and~\ref{eq:8} and are based on the acceleration and jolt vectors calculated at the current and previous step.
+\begin{equation}
+\centerting
+\label{eq:7}
+\bm{a_0_i}^{(2)}  = \frac{-6(\bm{a_0_i} - \bm{a_1_i}) - dt(4\bm{\dot{a_0_i}} + 2\bm{\dot{a_1_i}} )}{dt^2}
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:8}
+\bm{a_0_i}^{(3)}  = \frac{12(\bm{a_0_i} - \bm{a_1_i}) + 6dt(\bm{\dot{a_0_i}} + \bm{\dot{a_1_i}} )}{dt^3} 
+\end{equation}
+\\
+5. The current position, $\bm{r_i}$ and velocity , $\bm{v_i}$ vectors of each body in the system (the correction values) are calculated using equations~\ref{eq:9} and~\ref{eq:10}.
+\begin{equation}
+\centerting
+\label{eq:9}
+\bm{r_i} = \bm{r_p_i} + \frac{dt^4}{24}\bm{a_0_i^{(2)}} + \frac{dt^5}{120}\bm{a_0_i^{(3)}}
+\end{equation}
+\begin{equation}
+\centerting
+\label{eq:10}
+\bm{v_i} = \bm{v_p_i} + \frac{dt^3}{6}\bm{a_0_i^{(2)}} + \frac{dt^4}{24}\bm{a_0_i^{(3)}}
+\end{equation}
+\\
+6. Steps 1-5 are repeated until the current time becomes the maximum time or greater. 
+}
+\\
+\text\par{This N-body function was then used to simulate one Jupiter mass planet orbiting at 100AU in the x-y plane around a solar mass ($10^{33} g$) star. Sometimes the 4th Order Hermite Integration Scheme also involves calculating a new time step for each loop, but for this project, the same time step was always used. This time step was determined based on the orbital period of the planet that was calculated using Kepler’s 3rd Law. This showed that the period of the planet is about T = 1410 years. Therefore, to simulate about one full orbit of the planet around the star with steps small enough to produce accurate values in a reasonable amount of computation time, the time step was chosen through trial and error to be dt = T/10000  which is around 0.141 years/step.}
+\\
+\text\par{One orbit of the planet around the star was then simulated with the N-body 4th Order Hermite Integration function using the time step above, the orbital period as the maximum time and initial values at t = 0s calculated using Newton’s Law of Gravity for the planet at position (0, 100AU) and the star at (0,0). The x-y positions of the planet and star calculated over time by the function were then plotted in figure~\ref{fig:1} , which clearly shows that around one full orbit has occurred.}
+\\
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=9cm]{SinglePlanetSystem.pdf}
+    \caption{The x-y positions of the single planet system over a number of time steps for one full orbit.}
+    \label{fig:1}
+\end{figure}
+
+\text\par{A third body was then placed into this system. This third body is another solar mass star that is initially travelling at a speed of 1km/s relative to the star hosting the planet. This system was then simulated with the N-body 4th Order Hermite Integration function using the same time step above, a maximum time of eight orbital periods and initial values at t = 0s calculated using Newton’s Law of Gravity for the planet at position (0, 100AU), the host star at (0,0) and the passing star at around (1110 AU, -1000AU).}
+\\
+\text\par{The third body was initialized so that it travels to a position of around (1000AU,0) due to the gravitational attraction from the other star before having its path of motion more strongly disrupted by it and shifted closer to the left. As the passing star moved to this position from further away, the planetary system was already starting to become disrupted by the star and was pulled closer towards it,this disruption is called gravitational focusing, since gravity is bringing them together.  This caused the planetary system to start moving towards the right and then upwards as the other star passed by, and it continued to have this upward right motion when it was far away again.
+\\
+\par{The evolution of the x-y positions of all three bodies calculated by the function are plotted in figure~\ref{fig:2}, which clearly shows when the planetary system is disrupted as the perturbing star passes by. } }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=9cm]{PlanetSystemDisrupted.pdf}
+    \caption{The evolution of the x-y positions of the single planet system and a passing star over a number of time steps.}
+    \label{fig:2}
+\end{figure}
+\\
+\\
+\text{Figure~\ref{fig:2} above shows that although the passing star disrupted the position of the planetary system, the planet still remained in it's orbit around the star without it noticeably changing. Therefore, the perturbing star was moved inwards and with otherwise all the same parameters as before, the simulation was repeated until a noticeable disruption of the planet's orbit occurred. The planet's orbit starts to get noticeably disrupted when the passing star is initialized at a starting position of around (625AU,-1000AU). This causes the planet's orbit to get more strongly disrupted as the passing star makes it's closest approach but then return to a stable but slightly different orbit than before as the passing star moves away. 
+\\
+\par{The evolution of the x-y positions of the three bodies for this simulation are plotted in figure~\ref{fig:3}, which clearly shows the planet's orbit being disrupted as the perturbing star passes by. In general, figure~\ref{fig:3} shows that the perturbing star caused the planet's orbit to become a bit wider in the x direction, more elliptical and slightly increased it's orbital period.}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=9cm]{PlanetSystemDisrupted2.pdf}
+    \caption{The evolution of the x-y positions of the single planet system and a close passing star over a number of time steps.}
+    \label{fig:3}
+\end{figure}
+\\
+\text\par{The N-body function used to simulate the evolution of the systems must also conserve energy to a reasonably degree. The conservation of energy can be shown by checking if the final energy of a system is reasonably close to being equal to it's initial energy. It was decided that they are reasonably close if their percent difference is less than 25\% . 
+\\
+\par{For the single planet system, the system's final energy was calculated to be only ${6.0x10^{-5} }$ \%  different than it's initial energy, for the first system of three bodies, the system's final energy was calculated to be 15.7 \% different than the initial energy of the system, for the second system of three bodies, the final energy of the system was calculated to be 20.2 \%  different than the initial energy of the system. Therefore, energy was conserved to a reasonable amount for each use of the N-body function.} }
+\end{document}
