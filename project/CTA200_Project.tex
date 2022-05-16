@@ -23,7 +23,7 @@
 \\
 \noindent\textbf{Description of the Script and it’s Results:}
 \\
-\text\par{The N-body gravity code was designed as a function that uses a 4th Order Hermite Integration Scheme to update the position, velocity, and acceleration of each object in the system through various steps in a total time when given the mass, position, velocity, acceleration, and jolt of each body in cgs units at an initial time of t = 0s. This allows the code to follow the systems evolution going forward in time while conserving energy to a reasonable degree and then return lists of all the positions and velocities at each step. In general, the 4th Order Hermite Integration Scheme used in this N-body function involves the main steps below.}
+\text\par{The N-body gravity code was designed as a function that uses a 4th Order Hermite Integration Scheme to update the position, velocity, and acceleration of each object in the system through various steps in a total time when given the mass, position, velocity, acceleration, and jolt of each body in cgs units at an initial time of t = 0s. This allows the code to follow the system's evolution going forward in time while conserving energy to a reasonable degree and then return lists of all the positions and velocities at each step. In general, the 4th Order Hermite Integration Scheme used in this N-body function involves the main steps below.}
 \\
 \\
 \text{While the current time is less than the maximum time:
@@ -43,7 +43,7 @@
 \bm{v_p_i}  = \frac{dt^2}{2}\bm{\dot{a_0}_i} +  dt\bm{a_0_i} + \bm{v_0_i} 
 \end{equation}
 \\
-3. The current acceleration vector, $\bm{a_i}$ and jolt vector, $\bm{\dot{a}}$ of each body in the system are calculated from the predicted positions and velocities using the equations~\ref{eq:3},~\ref{eq:4},~\ref{eq:5} and~\ref{eq:6} where $i$ is the body you are currently calculating the acceleration for while $j$ represents each other body in the system, N is the total number of bodies in the system, $\bm{r_i_j}$ is the predicted position of body i relative to body j, $\bm{v_i_j}$ is the predicted velocity of body $i$ relative to body $j$,  $m_j$ is the mass of body j and G is the gravitational constant.
+3. The current acceleration vector, $\bm{a_1_i}$ and jolt vector, $\bm{\dot{a_1_i}}$ of each body in the system are calculated from the predicted positions and velocities using the equations~\ref{eq:3},~\ref{eq:4},~\ref{eq:5} and~\ref{eq:6} where $i$ is the body you are currently calculating the acceleration for while $j$ represents each other body in the system, N is the total number of bodies in the system, $\bm{r_i_j}$ is the predicted position of body i relative to body j, $\bm{v_i_j}$ is the predicted velocity of body $i$ relative to body $j$,  $m_j$ is the mass of body j and G is the gravitational constant.
 \begin{equation}
 \centerting
 \label{eq:3}
@@ -62,7 +62,7 @@
 \begin{equation}
 \centerting
 \label{eq:6}
-\bm{a_1_i}  = \sum_{j=1}^{N} Gm_j\frac{\bm{r_i_j}}{r_i_j^5} 
+\bm{\dot{a_1_i}}  = \sum_{j=1}^{N} Gm_j\frac{\bm{r_i_j}}{r_i_j^5} 
 \end{equation}
 \\
 \\
